@@ -1,0 +1,168 @@
+# Day 5 - Docker Volumes + Nginx Custom Page
+
+## 🧠 What I Learned
+
+### 1. Creating Custom HTML
+
+```bash
+mkdir mysite
+cd mysite
+nano index.html
+```
+
+Example content:
+
+```html
+<h1>Hello Nandini 🚀</h1>
+```
+
+---
+
+### 2. Running Nginx Container with Volume
+
+```bash
+docker run -d -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx
+```
+
+---
+
+### 3. Volume Concept
+
+* `-v` = volume (folder connection)
+* `$(pwd)` = current folder (host)
+* `/usr/share/nginx/html` = nginx folder inside container
+
+👉 Meaning:
+
+```
+Host folder → Container folder
+```
+
+---
+
+### 4. How It Works
+
+* Nginx serves files from `/usr/share/nginx/html`
+* We replaced that folder with our own folder
+* So nginx shows our HTML instead of default page
+
+---
+
+### 5. Live Update Feature
+
+* If we change `index.html`
+* Refresh browser → changes appear instantly
+* No need to restart container
+
+---
+
+### 6. Difference Without Volume
+
+Without `-v`:
+
+* Nginx shows default page
+* "Welcome to nginx!"
+
+With `-v`:
+
+* Nginx shows our custom page
+
+---
+
+### 7. File Renaming
+
+```bash
+mv index.html home.html
+```
+
+👉 changes file name
+
+---
+
+### 8. Nginx Configuration Change
+
+```bash
+vi /etc/nginx/conf.d/default.conf
+
+
+Change:
+
+```nginx
+index index.html;
+```
+
+To:
+
+```nginx
+index home.html;
+```
+
+Reload:
+
+```bash
+nginx -s reload
+```
+
+---
+
+### 9. Container Access
+
+```bash
+docker exec -it <container_id> bash
+```
+
+👉 enter inside container
+
+---
+
+### 10. Key Concepts
+
+* Volume = live connection between host and container
+* Container = isolated environment
+* Nginx = serves HTML files
+* Port mapping = connects host to container
+
+---
+
+## 🚀 Request Flow
+
+```
+Browser → localhost:8080
+        ↓
+Host port 8080
+        ↓
+Docker
+        ↓
+Container port 80
+        ↓
+Nginx
+        ↓
+HTML (from our folder)
+```
+
+---
+
+## 🔍 Observations
+
+* Changes reflect instantly with volume
+* No rebuild needed
+* Container uses host files directly
+* Nginx config controls default file
+
+---
+
+## 🧠 What I Understood
+
+* Volumes help connect local files to containers
+* Nginx serves whatever file exists in its HTML folder
+* Config file decides default page
+* Docker makes development faster
+
+---
+
+## ⚡ Real Life Use
+
+* Hosting static websites
+* Testing frontend locally
+* Live editing without rebuild
+* Debugging container-based apps

@@ -1,0 +1,84 @@
+# Day 6 - Dockerfile Basics
+
+## Commands Learned
+
+mkdir myapp
+cd myapp
+
+nano index.html
+→ Create HTML file
+
+nano Dockerfile
+→ Create Dockerfile
+
+docker build -t myapp:v1 .
+→ Build Docker image
+
+docker run -d -p 8081:80 myapp:v1
+→ Run container from custom image
+
+docker images
+→ List all images
+
+docker ps
+→ Show running containers
+
+## Key Concepts
+
+Dockerfile = A file containing instructions to build a Docker image
+
+Image = Blueprint of application
+
+Container = Running instance of image
+
+Build ≠ Run
+→ Building an image does not automatically update running containers
+
+## Dockerfile Example
+
+FROM nginx
+
+COPY index.html /usr/share/nginx/html
+
+## Explanation
+
+FROM nginx
+→ Uses nginx as base image
+
+COPY index.html /usr/share/nginx/html
+→ Copies local file into container's web directory
+
+## Observations
+
+* Changes in HTML file are not reflected automatically
+* Need to rebuild image after changes
+* Running container does not update automatically when image changes
+* Multiple versions of images can run on different ports
+
+## Versioning Concept
+
+myapp:v1 → Old version
+myapp:v2 → Updated version
+
+Each version creates a separate container
+
+## Debugging Learned
+
+* If page not loading → check container using docker ps
+* If wrong content → check which container/port is running
+* If changes not visible → rebuild image
+* If port not working → check port conflicts
+
+## What I Understood
+
+* Dockerfile is used to create custom images
+* Containers are isolated and do not update automatically
+* Image changes require new container deployment
+* Port mapping connects host and container
+
+## Real Life Use
+
+* Developers create Dockerfile for applications
+* CI/CD builds images from Dockerfile
+* Servers run containers using these images
+* New versions are deployed by creating new containers

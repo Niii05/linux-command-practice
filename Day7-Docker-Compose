@@ -1,0 +1,108 @@
+# Day 7 - Docker Compose (Multi-Container Applications)
+
+## Commands Learned
+
+docker-compose up -d
+→ Start all services defined in docker-compose.yml
+
+docker-compose down
+→ Stop and remove all containers
+
+docker ps
+→ Show running containers
+
+docker logs <container_name>
+→ View logs of a container
+
+## Key Concepts
+
+Docker Compose = Tool to run multiple containers using a single configuration file
+
+Service = A container defined inside docker-compose.yml
+
+Multi-container application = Application made of multiple services (e.g., app + database)
+
+## Example docker-compose.yml
+
+version: "3.8"
+
+services:
+redis:
+image: redis:7-alpine
+container_name: redis_server
+ports:
+- "6379:6379"
+volumes:
+- redis_data:/data
+
+view_count:
+image: thecloudworld/view_count
+container_name: view_count_app
+depends_on:
+- redis
+ports:
+- "8000:8000"
+environment:
+- REDIS_HOST=redis
+- REDIS_PORT=6379
+
+volumes:
+redis_data:
+
+## Explanation
+
+redis service
+→ Runs Redis database container
+
+view_count service
+→ Runs application container
+
+depends_on
+→ Ensures Redis starts before the app
+
+ports
+→ Maps host port to container port
+
+environment
+→ Passes configuration (Redis host and port to app)
+
+volumes
+→ Stores data persistently even if container is removed
+
+## Observations
+
+* Multiple containers run together using one command
+* Containers communicate using service names (e.g., redis)
+* If one service (like Redis) stops, the app may fail
+* Data stored in volumes is not lost after container removal
+
+## Communication Flow
+
+User (Browser → localhost:8000)
+↓
+Flask App (view_count container)
+↓
+Redis Container (stores data)
+↓
+Response (view count displayed)
+
+## Debugging Learned
+
+* Check running containers → docker ps
+* View logs → docker logs view_count_app
+* Restart services → docker-compose down && docker-compose up -d
+* If app not working → check dependent services (like Redis)
+
+## What I Understood
+
+* Docker Compose simplifies multi-container setup
+* Services work together to form a complete application
+* Containers communicate using internal networking
+* Volumes help persist data
+
+## Real Life Use
+
+* Backend + Database applications
+* Microservices architecture
+* Running complete systems using a single configuration file
+* Used in development and deployment environments

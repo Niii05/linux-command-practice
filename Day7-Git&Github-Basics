@@ -1,0 +1,108 @@
+# Day 8 - Git & GitHub Basics
+
+## Commands Learned
+
+git init
+→ Initialize a new Git repository
+
+git clone <repo_url>
+→ Clone a remote repository
+
+git status
+→ Check current changes
+
+git add <file>
+→ Add file to staging area
+
+git commit -m "message"
+→ Save changes with a message
+
+git push
+→ Upload changes to GitHub
+
+git pull
+→ Fetch and merge latest changes from remote
+
+git log
+→ View commit history
+
+## Branching Commands
+
+git branch
+→ List branches
+
+git branch <branch_name>
+→ Create new branch
+
+git checkout <branch_name>
+→ Switch branch
+
+git checkout -b <branch_name>
+→ Create and switch branch
+
+git merge <branch_name>
+→ Merge branch into current branch
+
+## Key Concepts
+
+Repository = Project folder tracked by Git
+
+Commit = Snapshot of changes
+
+Branch = Separate version of code
+
+Main branch = Primary working branch
+
+Merge = Combine changes from different branches
+
+## Workflow
+
+1. Make changes in files
+2. git add <file>
+3. git commit -m "message"
+4. git push
+
+→ Changes saved locally and uploaded to GitHub
+
+## Branching Workflow
+
+* Create new branch for feature
+* Work on branch
+* Merge into main after completion
+
+Example:
+
+git checkout -b feature1
+→ work
+git add .
+git commit -m "feature added"
+git checkout main
+git merge feature1
+
+## Observations
+
+* Git tracks changes over time
+* Branching helps work safely without breaking main code
+* Commit messages should be meaningful
+* Multiple developers can work using branches
+
+## Debugging Learned
+
+* If changes not showing → check git status
+* If commit failed → check message
+* If push failed → check remote connection
+* If merge conflict → resolve manually
+
+## What I Understood
+
+* Git is essential for version control
+* Branching allows safe development
+* GitHub stores and shares code
+* Proper workflow is important in teams
+
+## Real Life Use
+
+* Teams collaborate using Git
+* Code changes are tracked and reviewed
+* CI/CD pipelines trigger on git push
+* Used in every software and DevOps workflow

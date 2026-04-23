@@ -1,0 +1,99 @@
+# Day 10 - CI/CD Basics with GitHub Actions
+
+## Key Concepts
+
+CI (Continuous Integration)
+→ Automatically builds and tests code whenever changes are pushed
+
+CD (Continuous Deployment/Delivery)
+→ Automatically deploys code after successful build
+
+Pipeline
+→ A sequence of automated steps (build → test → deploy)
+
+## What is GitHub Actions
+
+GitHub Actions is a CI/CD tool provided by GitHub to automate workflows.
+
+* Runs workflows on events like push or pull request
+* Uses YAML files to define automation steps
+* Helps in building, testing, and deploying applications
+
+## Workflow File Structure
+
+.github/workflows/main.yml
+
+## Basic Workflow Example
+
+name: CI Pipeline
+
+on:
+push:
+branches: [ main ]
+
+jobs:
+build:
+runs-on: ubuntu-latest
+
+```
+steps:  
+- name: Checkout code  
+  uses: actions/checkout@v3  
+
+- name: Run a simple command  
+  run: echo "Hello from GitHub Actions"  
+```
+
+## Explanation
+
+on: push
+→ Triggers workflow when code is pushed
+
+jobs
+→ Defines tasks to be executed
+
+runs-on
+→ Specifies the environment (Ubuntu runner)
+
+steps
+→ Sequence of commands executed in order
+
+## Workflow Execution Flow
+
+Code Push
+↓
+GitHub Actions Trigger
+↓
+Workflow Runs
+↓
+Steps Execute
+↓
+Logs Generated
+
+## Observations
+
+* Every push can trigger automation
+* No manual intervention needed
+* Useful for testing and deployment
+* Helps maintain code quality
+
+## Debugging Learned
+
+* Check "Actions" tab for workflow status
+* YAML indentation must be correct
+* Ensure correct branch is specified
+* Errors can be seen in logs
+
+## What I Understood
+
+* CI/CD automates development workflows
+* GitHub Actions is easy to integrate with GitHub repos
+* Workflows are defined using YAML files
+* Automation is a key DevOps practice
+
+## Real Life Use
+
+* Automatically test code on every push
+* Deploy applications without manual steps
+* Used in CI/CD pipelines in companies
+* Can integrate with Docker, AWS, and other tools

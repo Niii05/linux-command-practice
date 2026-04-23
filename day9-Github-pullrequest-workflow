@@ -1,0 +1,89 @@
+# Day 9 - GitHub & Pull Request Workflow
+
+## Commands & Actions Learned
+
+git clone <repo_url>
+→ Clone repository from GitHub
+
+git push
+→ Upload changes to GitHub
+
+git pull
+→ Fetch and update latest changes
+
+git checkout -b <branch_name>
+→ Create new branch for feature work
+
+git merge <branch_name>
+→ Merge branch into main
+
+## Key Concepts
+
+GitHub = Cloud platform to store and manage Git repositories
+
+Remote Repository = Code stored on GitHub
+
+Local Repository = Code on your system
+
+Pull Request (PR) = Request to merge code changes into main branch
+
+## Workflow (Real World)
+
+1. Clone repository
+2. Create new branch
+3. Make changes
+4. Commit changes
+5. Push branch to GitHub
+6. Create Pull Request
+7. Review & merge into main
+
+## Pull Request (PR) Flow
+
+Feature Branch → Push to GitHub
+↓
+Create Pull Request
+↓
+Code Review
+↓
+Merge into Main Branch
+
+## Example Flow
+
+git checkout -b feature1
+(make changes)
+
+git add .
+git commit -m "feature added"
+
+git push origin feature1
+
+→ Create PR on GitHub
+→ Merge into main
+
+## Observations
+
+* Code is not directly pushed to main branch
+* PR ensures review before merging
+* Multiple developers can work safely
+* GitHub maintains version history
+
+## Debugging Learned
+
+* If push fails → check remote connection
+* If branch not visible → push branch first
+* If conflicts occur → resolve manually before merge
+* Always pull latest changes before starting work
+
+## What I Understood
+
+* GitHub enables collaboration
+* Pull Requests are essential for team workflow
+* Branching + PR = safe development
+* Code review improves quality
+
+## Real Life Use
+
+* Used in all software companies
+* Teams collaborate using PRs
+* CI/CD pipelines trigger on PR or push
+* Essential for DevOps and development workflows
